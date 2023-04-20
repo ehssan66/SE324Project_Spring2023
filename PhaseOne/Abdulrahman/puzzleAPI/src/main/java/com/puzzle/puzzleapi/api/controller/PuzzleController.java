@@ -17,7 +17,7 @@ public class PuzzleController {
     public PuzzleController(PuzzleService puzzleService) {
         this.puzzleService = puzzleService;
     }
-    /*
+    /**
     * call puzzleService for SOLVED_PUZZLE image 
     * @return  SOLVED_PUZZLE image that required
     */
@@ -32,7 +32,7 @@ public class PuzzleController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    /*
+    /**
     * call puzzleService for UNSOLVED_PUZZLE image 
     * @return  UNSOLVED_PUZZLE image that required
     */

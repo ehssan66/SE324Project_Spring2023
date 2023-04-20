@@ -3,7 +3,6 @@ package com.puzzle.puzzleapi.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
@@ -34,15 +33,4 @@ public class PuzzleServiceTest {
         ResponseEntity<byte[]> response = puzzleService.getPuzzleImage(UNSOLVED_PUZZLE);
         assertArrayEquals(expectedImage, response.getBody());
     }
-
-    // @Test
-    // public void getPuzzleImage_InvalidType() {
-    //     PuzzleService.PuzzleType invalidType = null;
-    //     try {
-    //         ResponseEntity<byte[]> response = puzzleService.getPuzzleImage(invalidType);
-    //         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-    //     } catch (Exception e) {
-    //         fail("Unexpected IOException");
-    //     }
-    // }
 }
