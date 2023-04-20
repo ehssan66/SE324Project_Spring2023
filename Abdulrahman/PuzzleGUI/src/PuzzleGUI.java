@@ -87,6 +87,9 @@ public class PuzzleGUI extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    /*
+     * @param to check if solved or unsolved then calls the displayImag with URL
+     */
     public void actionPerformed(ActionEvent e) {
         // If the solved button is clicked
         if (e.getSource() == solvedButton) {
@@ -102,6 +105,9 @@ public class PuzzleGUI extends JFrame implements ActionListener {
         }
     }
 
+    /*
+     * @param represent the URL of an image that needs to be displayed
+     */
     // Method to display the image from a given URL
     private void displayImage(String imageURL) {
         try {

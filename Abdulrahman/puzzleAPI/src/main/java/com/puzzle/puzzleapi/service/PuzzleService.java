@@ -17,6 +17,12 @@ public class PuzzleService {
         UNSOLVED_PUZZLE
     }
 
+    /*
+     * Get the required image 
+     * @param type to find, the image that required from client 
+     * 
+     * @return the path of required image or HttpStatus.NOT_FOUND
+     */
     public ResponseEntity<byte[]> getPuzzleImage(PuzzleType type) throws IOException {
         String imagePath;
 
@@ -28,14 +34,21 @@ public class PuzzleService {
                 imagePath = "static/unsolved_puzzle.png";
                 break;
             default:
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND); // If the type parameter is not defined, return a 404 Not Found response
         }
 
         byte[] imageBytes = loadImageBytes(imagePath);
         return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(imageBytes);
     }
 
+    /*
+     * @param use to represent the path to an image file.
+     *  the file's content is loaded as a byte array.
+     *  reads all of the file's bytes using the Files.the readAllBytes() function.
+     * @return a byte array that represents the contents of the image file.
+     */
     private byte[] loadImageBytes(String imagePath) throws IOException {
+        // Load the puzzle image from the resources directory
         ClassPathResource resource = new ClassPathResource(imagePath);
         return Files.readAllBytes(resource.getFile().toPath());
     }
