@@ -20,6 +20,8 @@ public class PuzzleServiceTest {
         puzzleService = new PuzzleService();
     }
 
+    // Partiton test, subdomain for Solved Puzzle
+    // test Solved Puzzle
     @Test
     public void getPuzzleImage_SolvedPuzzle() throws IOException {
         byte[] expectedImage = Files.readAllBytes(new ClassPathResource("static/solved_puzzle.jpg").getFile().toPath());
@@ -27,6 +29,8 @@ public class PuzzleServiceTest {
         assertArrayEquals(expectedImage, response.getBody());
     }
 
+    // Subdomain for Unsolved Puzzle
+    // test Unsolved Puzzle
     @Test
     public void getPuzzleImage_UnsolvedPuzzle() throws IOException {
         byte[] expectedImage = Files.readAllBytes(new ClassPathResource("static/unsolved_puzzle.png").getFile().toPath());

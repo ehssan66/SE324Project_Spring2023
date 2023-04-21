@@ -24,6 +24,8 @@ public class PuzzleControllerTest {
         puzzleController = new PuzzleController(puzzleService);
     }
 
+    // Partiton 1
+    // Subdomain test the successful call of getSolvedPuzzle_Success()
     @Test
     public void getSolvedPuzzle_Success() throws IOException {
         byte[] expectedImage = new byte[0];
@@ -33,6 +35,7 @@ public class PuzzleControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
+    // Subdomain test the error results of getSolvedPuzzle_InternalServerError()
     @Test
     public void getSolvedPuzzle_InternalServerError() throws IOException {
         when(puzzleService.getPuzzleImage(PuzzleType.SOLVED_PUZZLE)).thenThrow(IOException.class);
@@ -41,6 +44,8 @@ public class PuzzleControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 
+    // Partiton 2
+    // Subdomain test the successful call of getUnsolvedPuzzle_Success()
     @Test
     public void getUnsolvedPuzzle_Success() throws IOException {
         byte[] expectedImage = new byte[0];
@@ -50,6 +55,7 @@ public class PuzzleControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
+    // Subdomain test the error results of getUnsolvedPuzzle_InternalServerError()
     @Test
     public void getUnsolvedPuzzle_InternalServerError() throws IOException {
         when(puzzleService.getPuzzleImage(PuzzleType.UNSOLVED_PUZZLE)).thenThrow(IOException.class);
