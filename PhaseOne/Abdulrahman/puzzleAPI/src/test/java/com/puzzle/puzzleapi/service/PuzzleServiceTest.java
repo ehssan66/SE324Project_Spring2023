@@ -12,6 +12,11 @@ import static com.puzzle.puzzleapi.service.PuzzleService.PuzzleType.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PuzzleServiceTest {
+    /*
+     * Testing Strategy 
+     * 
+     * Partition: Solved Puzzle , Unsolved Puzzle 
+     */
 
     private PuzzleService puzzleService;
 

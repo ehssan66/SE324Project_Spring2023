@@ -14,6 +14,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class PuzzleControllerTest {
+    /*
+     * Testing Strategy 
+     * 
+     * Partition 1: successful call of Solved Puzzle , error results
+     * 
+     * Partition 2: successful call of Unsolved Puzzle , error results 
+     */
 
     private PuzzleController puzzleController;
     private PuzzleService puzzleService;
