@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ public class PuzzleClient extends JFrame {
 
     private JButton btnPuzzle1;
     private JButton btnPuzzle2;
+    private JLabel image;
 
     public PuzzleClient() {
         setTitle("Puzzle Client");
@@ -20,14 +22,16 @@ public class PuzzleClient extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Create buttons
-        btnPuzzle1 = new JButton("Get Puzzle 1");
-        btnPuzzle2 = new JButton("Get Puzzle 2");
+        btnPuzzle1 = new JButton("Get Solved Puzzle");
+        btnPuzzle2 = new JButton("Get Unsolved Puzzle");
+        image = new JLabel();
 
         // Add buttons to content pane
         Container container = getContentPane();
         container.setLayout(new FlowLayout());
         container.add(btnPuzzle1);
         container.add(btnPuzzle2);
+        container.add(image);
 
         // Add action listeners to buttons
         btnPuzzle1.addActionListener(new ActionListener() {
@@ -47,11 +51,10 @@ public class PuzzleClient extends JFrame {
 
     private void downloadPuzzle(int id) {
         try {
-            URL url = new URL("http://localhost:8080/puzzles/puzzle" + id);
-            InputStream inputStream = url.openStream();
-            OutputStream outputStream = new FileOutputStream("puzzle" + id + ".jpg");
-            Files.copy(inputStream, Path.of("puzzle" + id + ".jpg"));
-            JOptionPane.showMessageDialog(this, "Puzzle " + id + " downloaded successfully!");
+            URL url = new URL("http://localhost:8080/puzzle/" + id);
+            ImageIcon icon = new ImageIcon(ImageIO.read(url));
+            image.setIcon(icon);
+            pack();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Failed to download puzzle " + id + ": " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
