@@ -2,7 +2,6 @@ package com.groupv.puzzles.Solution;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import com.groupv.puzzles.Puzzle.Puzzle;
 
 /**
  * Controller for handling Puzzle-related HTTP requests.
@@ -12,13 +11,13 @@ public class SolutionController {
     
 
     /**
-     * Parse the Puzzle string to Puzzle object
+     * Parse the Solution string to Solution object
      *
-     * @param puzzle the Puzzle in string representation
-     * @return the Puzzle object
-     * @throws ResponseStatusException if the Puzzle string is invalid
+     * @param solution the Solution in string representation
+     * @return the Solution object
+     * @throws ResponseStatusException if the Solution string is invalid
      */
-    public Puzzle Parse(String puzzle) {
+    public Solution Parse(String solution) {
         return null;
         // TODO: implement my own parser
     }
