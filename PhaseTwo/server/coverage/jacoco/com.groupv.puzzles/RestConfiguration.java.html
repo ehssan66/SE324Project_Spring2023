@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RestConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">puzzles</a> &gt; <a href="index.source.html" class="el_package">com.groupv.puzzles</a> &gt; <span class="el_source">RestConfiguration.java</span></div><h1>RestConfiguration.java</h1><pre class="source lang-java linenums">package com.groupv.puzzles;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
+import org.springframework.http.MediaType;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import com.groupv.puzzles.Puzzle.Puzzle;
+import com.groupv.puzzles.PuzzleType.PuzzleType;
+import com.groupv.puzzles.PuzzleType.PuzzleTypeRepository;
+import com.groupv.puzzles.Solution.Solution;
+
+/**
+ * Configures the repository REST configuration by setting default media type, base path, and entity lookups.
+ *
+ * @param config the repository REST configuration object to configure
+ * @param cors the Cross-Origin Resource Sharing (CORS) registry object to configure
+ * @return void
+ */
+@Configuration
+<span class="fc" id="L21">public class RestConfiguration implements RepositoryRestConfigurer {</span>
+
+    @Override
+    public void configureRepositoryRestConfiguration(
+      RepositoryRestConfiguration config, CorsRegistry cors) {
+        // Set the default content type to application/json
+<span class="fc" id="L27">        config.setDefaultMediaType(MediaType.APPLICATION_JSON);</span>
+        
+        // Disable HAL as default JSON media type
+<span class="fc" id="L30">        config.useHalAsDefaultJsonMediaType(false);</span>
+
+        // Set the base path for the API endpoints to /api
+<span class="fc" id="L33">        config.setBasePath(&quot;/api&quot;);</span>
+
+        // Expose the ids of the PuzzleType, Puzzle, and Solution entities
+<span class="fc" id="L36">        config.exposeIdsFor(PuzzleType.class, Puzzle.class, Solution.class);</span>
+
+        // Configure entity lookups for the PuzzleTypeRepository using the name field
+        // and the findByName method
+<span class="fc" id="L40">        config.withEntityLookup().forRepository(PuzzleTypeRepository.class, PuzzleType::getName, PuzzleTypeRepository::findByName);</span>
+<span class="fc" id="L41">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

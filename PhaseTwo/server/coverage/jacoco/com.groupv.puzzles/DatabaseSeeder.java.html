@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DatabaseSeeder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">puzzles</a> &gt; <a href="index.source.html" class="el_package">com.groupv.puzzles</a> &gt; <span class="el_source">DatabaseSeeder.java</span></div><h1>DatabaseSeeder.java</h1><pre class="source lang-java linenums">package com.groupv.puzzles;
+
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import com.groupv.puzzles.PuzzleType.PuzzleType;
+import com.groupv.puzzles.PuzzleType.PuzzleTypeRepository;
+import com.groupv.puzzles.Solution.Solution;
+import com.groupv.puzzles.Solution.SolutionRepository;
+import com.groupv.puzzles.Puzzle.Puzzle;
+import com.groupv.puzzles.Puzzle.PuzzleRepository;
+
+@Configuration
+<span class="fc" id="L17">public class DatabaseSeeder {</span>
+<span class="fc" id="L18">    private static final Logger log = LoggerFactory.getLogger(DatabaseSeeder.class);</span>
+
+    /**
+     * Configures and seeds the database with sample data.
+     * 
+     * @param puzzleTypeRepository - Repository for PuzzleType entity
+     * @param puzzleRepository - Repository for Puzzle entity
+     * @param solutionRepository - Repository for Solution entity
+     * @return A CommandLineRunner instance to run the seed process
+     * @throws Exception If there is an issue during the seeding process
+     */
+    @Bean
+    CommandLineRunner seed(PuzzleTypeRepository puzzleTypeRepository, PuzzleRepository puzzleRepository, SolutionRepository solutionRepository) {
+        // create sample data
+<span class="fc" id="L32">        PuzzleType suguru = new PuzzleType(&quot;suguru&quot;, &quot;Suguru&quot;);</span>
+<span class="fc" id="L33">        Puzzle puzzle = new Puzzle(suguru, &quot;/public/suguru/puzzle-1.png&quot;);</span>
+<span class="fc" id="L34">        Solution solution = new Solution(List.of(puzzle), &quot;/public/suguru/solution-1.png&quot;);</span>
+
+        // preload sample data into the database
+<span class="fc" id="L37">        return args -&gt; {</span>
+<span class="fc" id="L38">            log.info(&quot;Preloading &quot; + puzzleTypeRepository.save(suguru));</span>
+<span class="fc" id="L39">            log.info(&quot;Preloading &quot; + puzzleRepository.save(puzzle));</span>
+<span class="fc" id="L40">            log.info(&quot;Preloading &quot; + solutionRepository.save(solution));</span>
+<span class="fc" id="L41">        };</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
