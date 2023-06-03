@@ -29,14 +29,14 @@ public class Puzzle {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="puzzle_type_id", nullable=false)
+    @JoinColumn(name = "puzzle_type_id", nullable = false)
     @RestResource(path = "type")
     private PuzzleType type;
 
     @Column(nullable = false)
     private String link;
 
-    @Column(nullable = false, updatable=false)
+    @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private Date created_at;
 
@@ -53,4 +53,5 @@ public class Puzzle {
         this.type = type;
         this.link = link;
     }
+
 }
