@@ -10,6 +10,10 @@ public class InkyPuzzleSolver {
         this.grid = new int[size][size];
     }
 
+    /**
+    * call solve() to start solving 
+    * @return  Solved grid if found or null if not.
+    */
     public int[][] solve() {
         if (solvePuzzle(0, 0)) {
             return grid;
@@ -17,6 +21,13 @@ public class InkyPuzzleSolver {
         return null; // No solution found
     }
 
+    /**
+     * recursive approach that fills the cells backwards in an effort to solve the puzzle. 
+     * @param row to take the row index
+     * @param col to take the column index
+     * 
+     * @return true for valid solved or false for invalid solved
+     */
     private boolean solvePuzzle(int row, int col) {
         if (row == size) {
             return true; // Base case: Puzzle solved
@@ -40,10 +51,23 @@ public class InkyPuzzleSolver {
         return false;
     }
 
+    /**
+     * Validates the current row, column, and loop to determine whether the puzzle's current state is valid. 
+     * @param row to take the row index
+     * @param col to take the column index
+     * 
+     * @return true for valid state or false for invalid state
+     */
     private boolean isValid(int row, int col) {
         return isValidRow(row) && isValidColumn(col) && isValidLoop();
     }
 
+    /**
+     * Determines whether the amount of black cells in the specified row corresponds to the clue for that row. 
+     * @param row to take the row index to check
+     * 
+     * @return true for valid row or false for invalid row
+     */
     private boolean isValidRow(int row) {
         int blackCount = 0;
         int clue = clues[row][0];
@@ -55,6 +79,12 @@ public class InkyPuzzleSolver {
         return clue == 0 || blackCount == clue;
     }
 
+    /**
+     * Determines whether the amount of black cells in the specified column corresponds to the clue for that column. 
+     * @param col to take the column index to check
+     * 
+     * @return true for valid column or false for invalid column
+     */
     private boolean isValidColumn(int col) {
         int blackCount = 0;
         int clue = clues[col][1];
@@ -66,6 +96,11 @@ public class InkyPuzzleSolver {
         return clue == 0 || blackCount == clue;
     }
 
+    /**
+     * Determines whether the grid contains a valid loop of black cells.
+     * 
+     * @return true for valid loop or false for invalid loop.
+     */
     private boolean isValidLoop() {
         boolean[][] visited = new boolean[size][size];
         int startX = -1;
@@ -91,6 +126,16 @@ public class InkyPuzzleSolver {
         return dfs(startX, startY, startX, startY, visited);
     }
 
+    /**
+     * A depth-first search (DFS) recursive method is used to verify the grid's loop of black cells. 
+     * @param row to take the row index
+     * @param col to take the column index
+     * @param prevRow to take the previous cell's row index
+     * @param prevCol to take the previous cell's column index
+     * @param visited to know a 2D boolean array displaying the cells that were visited or not.
+     * 
+     * @return true for valid loop or false for invalid loop
+     */
     private boolean dfs(int row, int col, int prevRow, int prevCol, boolean[][] visited) {
         visited[row][col] = true;
 
@@ -118,6 +163,13 @@ public class InkyPuzzleSolver {
         return true; // Loop is valid
     }
 
+    /**
+     * Determines whether the specified cell coordinates are inside the grid's boundaries. 
+     * @param row to take the row index
+     * @param col to take the column index
+     * 
+     * @return true for valid cell  or false for invalid cell 
+     */
     private boolean isValidCell(int row, int col) {
         return row >= 0 && row < size && col >= 0 && col < size;
     }
