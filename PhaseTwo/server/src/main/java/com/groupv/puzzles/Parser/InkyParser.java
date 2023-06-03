@@ -3,6 +3,8 @@ package com.groupv.puzzles.Parser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import com.groupv.puzzles.Puzzle.Puzzle;
 
@@ -14,10 +16,13 @@ public class InkyParser implements PuzzleParser {
      * @param path the path to the file to parse
      * @return the Puzzle object
      * @throws IOException if the file cannot be read
+     * @throws URISyntaxException if the file path is invalid
      */
     @Override
-    public Puzzle parse(String path) throws IOException {
+    public Puzzle parse(String fileName) throws IOException, URISyntaxException {
 
+        URI uri = new URI(InkyParser.class.getClassLoader().getResource("static/public/" + fileName).toString());
+        String path = uri.getPath();
         BufferedReader reader = new BufferedReader(new FileReader(path));
         String line = reader.readLine();
         int size = Integer.parseInt(line);
