@@ -1,9 +1,9 @@
 package com.groupv.puzzles.Puzzle;
 
-public class ParsedPuzzle {
+public class ParsedPuzzle<T> {
 
     private int size;
-    private int[][] grid;
+    private T[][] grid;
 
     /**
      * Constructs a new Puzzle with the given size and grid.
@@ -11,7 +11,7 @@ public class ParsedPuzzle {
      * @param size the size of the Puzzle
      * @param grid the grid of the Puzzle
      */
-    public ParsedPuzzle(int size, int[][] grid) {
+    public ParsedPuzzle(int size, T[][] grid) {
         this.size = size;
         this.grid = grid;
     }
@@ -40,7 +40,7 @@ public class ParsedPuzzle {
      * @param row the row of the cell
      * @param col the column of the cell
      */
-    public void setCell(int row, int col, int value) {
+    public void setCell(int row, int col, T value) {
         grid[row][col] = value;
     }
 
@@ -49,7 +49,7 @@ public class ParsedPuzzle {
      *
      * @return the value of the grid
      */
-    public int[][] getGrid() {
+    public T[][] getGrid() {
         return grid;
     }
 
