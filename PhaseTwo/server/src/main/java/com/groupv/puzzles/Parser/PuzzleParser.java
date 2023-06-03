@@ -3,8 +3,8 @@ package com.groupv.puzzles.Parser;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import com.groupv.puzzles.Puzzle.Puzzle;
+import com.groupv.puzzles.Puzzle.ParsedPuzzle;
 
 public interface PuzzleParser {
-    Puzzle parse(String fileName) throws IOException, URISyntaxException;
+    ParsedPuzzle parse(String fileName) throws IOException, URISyntaxException;
 }

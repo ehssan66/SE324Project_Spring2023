@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import com.groupv.puzzles.Puzzle.ParsedPuzzle;
 import com.groupv.puzzles.Puzzle.Puzzle;
 
 public class InkyParser implements PuzzleParser {
@@ -19,7 +20,7 @@ public class InkyParser implements PuzzleParser {
      * @throws URISyntaxException if the file path is invalid
      */
     @Override
-    public Puzzle parse(String fileName) throws IOException, URISyntaxException {
+    public ParsedPuzzle parse(String fileName) throws IOException, URISyntaxException {
 
         URI uri = new URI(InkyParser.class.getClassLoader().getResource("static/public/" + fileName).toString());
         String path = uri.getPath();
@@ -28,7 +29,7 @@ public class InkyParser implements PuzzleParser {
         int size = Integer.parseInt(line);
         int[][] grid = new int[size][size];
 
-        Puzzle puzzle = new Puzzle(size, grid);
+        ParsedPuzzle puzzle = new ParsedPuzzle(size, grid);
 
         int value;
 
