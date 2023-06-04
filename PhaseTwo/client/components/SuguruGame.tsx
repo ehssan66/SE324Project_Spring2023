@@ -131,14 +131,7 @@ export default function Game() {
     *   endpoint needs to be checked later
     */
     const handleCheck = async () => {
-        const solution = `
-        ${puzzleState.zeroZero}a${puzzleState.zeroOne}b${puzzleState.zeroTwo}b${puzzleState.zeroThree}b${puzzleState.zeroFour}c${puzzleState.zeroFive}c\n
-        ${puzzleState.oneZero}a${puzzleState.oneOne}d${puzzleState.oneTwo}e${puzzleState.oneThree}b${puzzleState.oneFour}c${puzzleState.oneFive}f\n
-        ${puzzleState.twoZero} a${puzzleState.twoOne}e${puzzleState.twoTwo}e${puzzleState.twoThree}e${puzzleState.twoFour}c${puzzleState.twoFive}g\n
-        ${puzzleState.threeZero}a${puzzleState.threeOne}h${puzzleState.threeTwo}e${puzzleState.threeThree}i${puzzleState.threeFour}c${puzzleState.threeFive}g\n
-        ${puzzleState.fourZero}i${puzzleState.fourOne}i${puzzleState.fourTwo}i${puzzleState.fourThree}i${puzzleState.fourFour}i${puzzleState.fourFive}g\n
-        ${puzzleState.fiveZero}h${puzzleState.fiveOne}h${puzzleState.fiveTwo}h${puzzleState.fiveThree}i${puzzleState.fiveFour}g${puzzleState.fiveFive}g`
-        console.log(solution)
+        const solution = `${puzzleState.zeroZero}a${puzzleState.zeroOne}b${puzzleState.zeroTwo}b${puzzleState.zeroThree}b${puzzleState.zeroFour}c${puzzleState.zeroFive}c\n${puzzleState.oneZero}a${puzzleState.oneOne}d${puzzleState.oneTwo}e${puzzleState.oneThree}b${puzzleState.oneFour}c${puzzleState.oneFive}f\n${puzzleState.twoZero}a${puzzleState.twoOne}e${puzzleState.twoTwo}e${puzzleState.twoThree}e${puzzleState.twoFour}c${puzzleState.twoFive}g\n${puzzleState.threeZero}a${puzzleState.threeOne}h${puzzleState.threeTwo}e${puzzleState.threeThree}i${puzzleState.threeFour}c${puzzleState.threeFive}g\n${puzzleState.fourZero}a${puzzleState.fourOne}h${puzzleState.fourTwo}i${puzzleState.fourThree}i${puzzleState.fourFour}i${puzzleState.fourFive}g\n${puzzleState.fiveZero}h${puzzleState.fiveOne}h${puzzleState.fiveTwo}h${puzzleState.fiveThree}i${puzzleState.fiveFour}g${puzzleState.fiveFive}g`
 
         // send solution to server
         const res = await fetch('/api/puzzles/1/check', {
@@ -155,6 +148,11 @@ export default function Game() {
         console.log(data)
         setIsTrue(data.success);
         setChecked(true);
+
+        setTimeout(() => {
+            setIsTrue(false);
+            setChecked(false);
+        }, 4000);
     }
 
     useEffect(() => {
