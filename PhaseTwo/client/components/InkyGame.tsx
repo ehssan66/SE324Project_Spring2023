@@ -136,9 +136,7 @@ export default function Game() {
                         <Inky puzzle={puzzle} puzzleState={puzzleState} handleChange={handlePuzzleStateChange} />
                     </div>
                     <div className='solution absolute w-full h-full [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]'>
-                        {/* { solution?.link && 
-                        <Image src={`http://localhost:8080/${solution.link}`} width='500' height='500' alt={''}></Image>
-                    } */}
+                        <Inky puzzle={puzzle} puzzleState={puzzleState} handleChange={handlePuzzleStateChange} />
                     </div>
                 </div>
 
