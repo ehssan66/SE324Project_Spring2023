@@ -19,25 +19,25 @@ public class InkiesParser implements PuzzleParser {
      * @throws URISyntaxException if the file path is invalid
      */
     @Override
-    public ParsedPuzzle<Integer> parse(String fileName) throws IOException, URISyntaxException {
+    public ParsedPuzzle<String> parse(String fileName) throws IOException, URISyntaxException {
 
         URI uri = new URI(InkiesParser.class.getClassLoader().getResource("static/public/" + fileName).toString());
         String path = uri.getPath();
         BufferedReader reader = new BufferedReader(new FileReader(path));
         String line = reader.readLine();
         int size = Integer.parseInt(line);
-        Integer[][] grid = new Integer[size][size];
+        String[][] grid = new String[size][size];
 
-        ParsedPuzzle<Integer> puzzle = new ParsedPuzzle<Integer>(size, grid);
+        ParsedPuzzle<String> puzzle = new ParsedPuzzle<String>(size, grid);
 
         for (int i = 0; i < size; i++) {
             line = reader.readLine();
             String[] tokens = line.split(" ");
             for (int j = 0; j < size; j++) {
                 if (tokens[j].equals("X")) {
-                    puzzle.setCell(i, j, 0);
+                    puzzle.setCell(i, j, "X");
                 } else {
-                    int value = Integer.parseInt(tokens[j]);
+                    String value = tokens[j];
                     puzzle.setCell(i, j, value);
                 }
             }
