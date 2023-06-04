@@ -2,13 +2,17 @@ package com.groupv.puzzles.Puzzle;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 import com.groupv.puzzles.PuzzleType.PuzzleType;
 import com.groupv.puzzles.PuzzleType.PuzzleTypeRepository;
+import com.groupv.puzzles.Solver.SolutionDto;
+import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
+import org.springframework.http.MediaType;
 
 
 /**
@@ -51,5 +55,21 @@ public class PuzzleController {
         Puzzle puzzle = all.get(index - 1);
 
         return new RedirectView("/api/puzzles/" + puzzle.getId());
+    }
+
+    @GetMapping("/api/puzzles/{id}/solve")
+    public SolutionDto solvePuzzle(@PathVariable("id") Long id) {
+        Puzzle puzzle = puzzleRepository.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No puzzle found"));
+
+        return puzzle.solver().solve();
+    }
+
+    @PostMapping("/api/puzzles/{id}/check")
+    public Boolean checkPuzzle(@PathVariable("id") Long id, @RequestBody PuzzleDao puzzleDao) {
+        Puzzle puzzle = puzzleRepository.findById(id)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No puzzle found"));
+
+        return puzzle.solver().check(puzzleDao);
     }
 }

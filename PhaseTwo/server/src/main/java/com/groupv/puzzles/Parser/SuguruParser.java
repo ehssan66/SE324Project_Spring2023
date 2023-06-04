@@ -26,7 +26,7 @@ public class SuguruParser implements PuzzleParser {
         BufferedReader reader = new BufferedReader(new FileReader(path));
 
         String line = reader.readLine();
-        int size = Integer.parseInt(line);
+        int size = 5;
         String[][] grid = new String[size][size];
         ParsedPuzzle<String> puzzle = new ParsedPuzzle<String>(size, grid);
 

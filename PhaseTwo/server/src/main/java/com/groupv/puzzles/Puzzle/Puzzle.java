@@ -15,6 +15,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.groupv.puzzles.Solver.Solver;
+import com.groupv.puzzles.Solver.SolverFactory;
 
 /**
  * Entity class representing a Puzzle entity.
@@ -22,6 +24,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+
 public class Puzzle {
     @Id
     @GeneratedValue
@@ -48,6 +51,15 @@ public class Puzzle {
     public Puzzle(PuzzleType type, String content) {
         this.type = type;
         this.content = content;
+    }
+
+    /**
+     * Returns a Solver for this Puzzle.
+     *
+     * @return a Solver for this Puzzle
+     */
+    public Solver solver() {
+        return SolverFactory.create(this);
     }
 
 }
