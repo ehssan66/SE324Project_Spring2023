@@ -13,14 +13,15 @@ public class SuguruParser implements PuzzleParser {
     /**
      * Parses the given file into a Puzzle object.
      *
-     * @param path the path to the file to parse
-     * @return the Puzzle object
+     * @param fileName containing puzzle to parse
+     * @return Puzzle object
      * @throws IOException if the file cannot be read
      * @throws URISyntaxException if the file path is invalid
      */
     @Override
     public ParsedPuzzle<String> parse(String fileName) throws IOException, URISyntaxException {
 
+        // Read file content and covert it to URI
         URI uri = new URI(SuguruParser.class.getClassLoader().getResource("static/" + fileName).toString());
         String path = uri.getPath();
         BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -28,8 +29,10 @@ public class SuguruParser implements PuzzleParser {
         String line = reader.readLine();
         int size = 5;
         String[][] grid = new String[size][size];
+        // Create new ParsedPuzzle to store the parsed data as string
         ParsedPuzzle<String> puzzle = new ParsedPuzzle<String>(size, grid);
 
+        // Read file data and store the value to specific cell
         for (int i = 0; i < size; i++) {
             line = reader.readLine();
             String[] tokens = line.split(" ");

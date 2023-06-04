@@ -17,6 +17,11 @@ public interface PuzzleRepository extends JpaRepository<Puzzle, Long> {
      * @return the number of Puzzles with the given PuzzleType
      */
     long countByType(PuzzleType puzzleType);
-
+    /**
+     * Finds all Puzzles with the given PuzzleType.
+     *
+     * @param puzzleType the PuzzleType to count Puzzles for
+     * @return an Optional containing list of Puzzles with the given PuzzleType, if exists
+     */
     Optional<List<Puzzle>> findByType(PuzzleType puzzleType);
 }
