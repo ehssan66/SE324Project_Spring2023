@@ -63,9 +63,10 @@ export default function Game() {
     }
 
     const solvePuzzle = async (id: number) => {
-        const res = await fetch(`/api/puzzles/suguru/${id}/solve`)
+        const res = await fetch(`/api/puzzles/${id}/solve`)
         const data = await res.json();
-        setSolution(data)
+        console.log(data["content"])
+        setSolution({id: 1, content: data["content"]})
     }
 
     const flipCard = () => {
@@ -78,7 +79,6 @@ export default function Game() {
     */
     const handleCheck = async () => {
         const solution = `${puzzleState.topLeft} ${puzzleState.top} ${puzzleState.topRight}\n${puzzleState.left} ${puzzleState.center} ${puzzleState.right}\n${puzzleState.bottomLeft} ${puzzleState.bottom} ${puzzleState.bottomRight}`
-        console.log(solution)
 
         // send solution to server
         const res = await fetch('/api/puzzles/2/check', {
@@ -104,6 +104,7 @@ export default function Game() {
     useEffect(() => {
         // fetch /api/puzzles and setImage
         fetchPuzzle()
+        solvePuzzle(2)
     }, [])
 
     return (
@@ -125,7 +126,7 @@ export default function Game() {
                         : <></>
                     }
             <section className='flex-grow'></section>
-            <section className='[perspective:1000px] w-[500px] max-w-[100vw] px-6 lg:px-0 max-h-[calc(100vw-3rem)] h-[500px]'>
+            <section className='[perspective:1000px] w-[206px] max-w-[206px] px-6 lg:px-0 max-h-[calc(206px)] h-[206px]'>
                 <div className='flip-card [transform-style:preserve-3d] transition-transform duration-[0.8s] relative w-full h-full'>
                     <div className='puzzle absolute w-full h-full [-webkit-backface-visibility:hidden] [backface-visibility:hidden] flex items-center justify-center'>
                         {/* { puzzle?.link && 
@@ -134,16 +135,86 @@ export default function Game() {
                         <Inky puzzle={puzzle} puzzleState={puzzleState} handleChange={handlePuzzleStateChange} />
                     </div>
                     <div className='solution absolute w-full h-full [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]'>
-                        <Inky puzzle={puzzle} puzzleState={puzzleState} handleChange={handlePuzzleStateChange} />
+                    <div>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td className={`border border-neutral relative border-t-2 border-t-primary-content border-l-2 border-l-primary-content border-r-2 border-r-primary-content`} >
+                                            <div>
+                                                <input type="text" value="2" maxLength={1}
+                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                            </div>
+                                            <div className="absolute top-0 left-2 text-sm">7 +</div>
+                                        </td>
+                                        <td className={`border border-neutral relative border-t-2 border-t-primary-content border-l-2 border-l-primary-content border-b-2 border-b-primary-content`} >
+                                            <div>
+                                                <input type="text" value="3" maxLength={1}
+                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                            </div>
+                                            <div className="absolute top-0 left-2 text-sm">3 x</div>
+
+                                        </td>
+                                        <td className={`border border-neutral relative border-t-2 border-t-primary-content border-r-2 border-r-primary-content border-b-2 border-b-primary-content`} >
+                                            <div>
+                                                <input type="text" value="1" maxLength={1}
+                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className={`border border-neutral relative border-l-2 border-l-primary-content border-r-2 border-r-primary-content`} >
+                                            <div>
+                                                <input type="text" value="1" maxLength={1}
+                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                            </div>
+                                        </td>
+                                        <td className={`border border-neutral relative border-l-2 border-l-primary-content`} >
+                                            <div>
+                                                <input type="text" value="2" maxLength={1}
+                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                            </div>
+                                            <div className="absolute top-0 left-2 text-sm">12 x</div>
+                                        </td>
+                                        <td className={`border border-neutral relative border-r-2 border-r-primary-content`} >
+                                            <div>
+                                                <input type="text" value="3" maxLength={1}
+                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className={`border border-neutral relative border-l-2 border-l-primary-content border-b-2 border-b-primary-content`} >
+                                            <div>
+                                                <input type="text" value="3" maxLength={1}
+                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                            </div>
+                                        </td>
+                                        <td className={`border border-neutral relative border-b-2 border-b-primary-content border-t-2 border-t-primary-content border-r-2 border-r-primary-content`} >
+                                            <div>
+                                                <input type="text" value="1" maxLength={1}
+                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                            </div>
+                                        </td>
+                                        <td className={`border border-neutral relative border-b-2 border-b-primary-content border-r-2 border-r-primary-content`} >
+                                            <div>
+                                                <input type="text" value="2" maxLength={1}
+                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
             </section>
             <section className='flex flex-col items-center justify-center flex-grow gap-8 pt-12 lg:pt-0'>
-                <button onClick={fetchPuzzle} className="btn new-puzzle w-full lg:w-3/4 gap-2 text-primary-content">
+                {/* <button onClick={fetchPuzzle} className="btn new-puzzle w-full lg:w-3/4 gap-2 text-primary-content">
                     <Add size="24" />
                     New Puzzle
-                </button>
+                </button> */}
                 <button onClick={handleCheck} className="btn new-puzzle w-full lg:w-3/4 gap-2 text-primary-content">
                     <Math size="24" />
                     Check Solution
