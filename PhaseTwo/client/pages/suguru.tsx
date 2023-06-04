@@ -1,4 +1,5 @@
 import { Open_Sans } from 'next/font/google'
+import Game from '@/components/SuguruGame'
 import Game from '@/components/InkyGame'
 import Layout from '../components/layouts'
 
