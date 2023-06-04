@@ -11,12 +11,20 @@ public class SuguruSolver implements Solver {
     public SuguruSolver(Puzzle puzzle) {
         this.puzzle = puzzle;
     }
-
+    /**
+     * This method is responsible for solving the puzzle and returning a SolutionDto object.
+     * @return SolutionDto
+     */
     @Override
     public SolutionDto solve() {
         return new SolutionDto(this.solution);
     }
 
+    /**
+     * This method is overridden from the Solver interface. It compares the solution string with the content of the puzzle parameter using the equals() method. 
+     * @param puzzle that An instance of PuzzleDao representing the puzzle to be checked.
+     * @return CheckDto
+     */
     @Override
     public CheckDto check(PuzzleDao puzzle) {
         return new CheckDto(this.solution.equals(puzzle.getContent()));

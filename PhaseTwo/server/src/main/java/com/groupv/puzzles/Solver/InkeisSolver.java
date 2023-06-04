@@ -16,6 +16,11 @@ public class InkeisSolver implements Solver {
         return new SolutionDto(this.solution);
     }
 
+    /**
+     * 
+     * @param puzzle that An instance of PuzzleDao representing the puzzle to be checked
+     * @return CheckDto
+     */
     @Override
     public CheckDto check(PuzzleDao puzzle) {
         return new CheckDto(this.solution.equals(puzzle.getContent()));
