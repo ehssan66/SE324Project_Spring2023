@@ -137,18 +137,18 @@ export default function Game() {
         ${puzzleState.twoZero} a${puzzleState.twoOne}e${puzzleState.twoTwo}e${puzzleState.twoThree}e${puzzleState.twoFour}c${puzzleState.twoFive}g\n
         ${puzzleState.threeZero}a${puzzleState.threeOne}h${puzzleState.threeTwo}e${puzzleState.threeThree}i${puzzleState.threeFour}c${puzzleState.threeFive}g\n
         ${puzzleState.fourZero}i${puzzleState.fourOne}i${puzzleState.fourTwo}i${puzzleState.fourThree}i${puzzleState.fourFour}i${puzzleState.fourFive}g\n
-        ${puzzleState.fiveZero}h${puzzleState.fiveOne}h${puzzleState.fiveTwo}h${puzzleState.fiveThree}i${puzzleState.fiveFour}g${puzzleState.fiveFive}g
-        `
+        ${puzzleState.fiveZero}h${puzzleState.fiveOne}h${puzzleState.fiveTwo}h${puzzleState.fiveThree}i${puzzleState.fiveFour}g${puzzleState.fiveFive}g`
         console.log(solution)
 
         // send solution to server
         const res = await fetch('/api/puzzles/1/check', {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                solution,
+                content: solution,
             })
         })
         const data = await res.json()
