@@ -8,6 +8,8 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 import com.groupv.puzzles.PuzzleType.PuzzleType;
 import com.groupv.puzzles.PuzzleType.PuzzleTypeRepository;
+import java.util.List;
+
 
 /**
  * Controller for handling Puzzle-related HTTP requests.
@@ -41,11 +43,12 @@ public class PuzzleController {
         PuzzleType puzzleType = puzzleTypeRepository.findByName(name)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No puzzle type found"));
 
-        long max = puzzleRepository.countByType(puzzleType);
-        long index = (long) Math.random() * (max - 1) + 1;
+        List<Puzzle> all = puzzleRepository.findByType(puzzleType)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No puzzle type found"));
+        int max =  all.size();
+        int index = (int) Math.random() * (max - 1) + 1;
 
-        Puzzle puzzle = puzzleRepository.findById(index)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No puzzle found"));
+        Puzzle puzzle = all.get(index - 1);
 
         return new RedirectView("/api/puzzles/" + puzzle.getId());
     }
