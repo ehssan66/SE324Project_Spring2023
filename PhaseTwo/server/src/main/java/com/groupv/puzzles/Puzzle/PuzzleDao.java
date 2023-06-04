@@ -9,13 +9,13 @@ public class PuzzleDao {
     /**
      * Constructs a new PuzzleDoa with given content
      *
-     * @param content the size of the Puzzle
+     * @param content of the Puzzle
      */
     public PuzzleDao(String content) {
         this.content = content;
     }
     /**
-     * Returns content
+     * Returns puzzle content
      *
      * @return string content
      */
