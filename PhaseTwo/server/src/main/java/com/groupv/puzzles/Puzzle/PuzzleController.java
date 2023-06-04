@@ -49,16 +49,4 @@ public class PuzzleController {
 
         return new RedirectView("/api/puzzles/" + puzzle.getId());
     }
-
-    /**
-     * Parse the Puzzle string to Puzzle object
-     *
-     * @param puzzle the Puzzle in string representation
-     * @return the Puzzle object
-     * @throws ResponseStatusException if the Puzzle string is invalid
-     */
-    public Puzzle Parse(String puzzle) {
-        return null;
-        // TODO: implement my own parser
-    }
 }
