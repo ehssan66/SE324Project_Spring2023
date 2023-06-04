@@ -21,7 +21,7 @@ public class InkiesParser implements PuzzleParser {
     @Override
     public ParsedPuzzle<String> parse(String fileName) throws IOException, URISyntaxException {
 
-        URI uri = new URI(InkiesParser.class.getClassLoader().getResource("static/public/" + fileName).toString());
+        URI uri = new URI(InkiesParser.class.getClassLoader().getResource("static/" + fileName).toString());
         String path = uri.getPath();
         BufferedReader reader = new BufferedReader(new FileReader(path));
         String line = reader.readLine();
