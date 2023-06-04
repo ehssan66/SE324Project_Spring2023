@@ -3,7 +3,6 @@ import { Add, Magicpen, Math, Warning2, TickCircle } from 'iconsax-react'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Inky from './Inky'
-import { set } from 'cypress/types/lodash'
 
 type Puzzle = {
     id: number,
@@ -89,15 +88,14 @@ export default function Game() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                solution,
+                content: solution,
             })
         })
         const data = await res.json()
         console.log(data)
         setIsTrue(data.success);
         setChecked(true);
-
-        setTimeout(() => {
+      setTimeout(() => {
             setIsTrue(false);
             setChecked(false);
         }, 4000);
@@ -110,22 +108,22 @@ export default function Game() {
 
     return (
         <div className='game flex flex-col lg:flex-row items-center justify-center h-full w-full m-auto'>
-            {   isTrue ?
-                    <div className='bg-success transition duration-700 bg-opacity-50 flex flex-col items-center justify-center absolute top-24 right-8'>
-                        <h1 className='text-xl text-white px-14 py-2 flex items-center gap-2'>
-                            <TickCircle size='24' />
-                            Correct!
-                        </h1>
-                    </div>
-                : checked ?
-                        <div className='bg-error transition duration-700 bg-opacity-50 flex flex-col items-center justify-center absolute top-24 right-8'>
-                            <h1 className='text-xl text-white px-14 py-2 flex items-center gap-2'>
-                                <Warning2 size='24' />
-                                Incorrect!
-                            </h1>
-                        </div>
-                : <></>
-            }
+        {   isTrue ?
+                            <div className='bg-success transition duration-700 bg-opacity-50 flex flex-col items-center justify-center absolute top-24 right-8'>
+                                <h1 className='text-xl text-white px-14 py-2 flex items-center gap-2'>
+                                    <TickCircle size='24' />
+                                    Correct!
+                                </h1>
+                            </div>
+                        : checked ?
+                                <div className='bg-error transition duration-700 bg-opacity-50 flex flex-col items-center justify-center absolute top-24 right-8'>
+                                    <h1 className='text-xl text-white px-14 py-2 flex items-center gap-2'>
+                                        <Warning2 size='24' />
+                                        Incorrect!
+                                    </h1>
+                                </div>
+                        : <></>
+                    }
             <section className='flex-grow'></section>
             <section className='[perspective:1000px] w-[500px] max-w-[100vw] px-6 lg:px-0 max-h-[calc(100vw-3rem)] h-[500px]'>
                 <div className='flip-card [transform-style:preserve-3d] transition-transform duration-[0.8s] relative w-full h-full'>
@@ -136,13 +134,9 @@ export default function Game() {
                         <Inky puzzle={puzzle} puzzleState={puzzleState} handleChange={handlePuzzleStateChange} />
                     </div>
                     <div className='solution absolute w-full h-full [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]'>
-                        {/* { solution?.link && 
-                        <Image src={`http://localhost:8080/${solution.link}`} width='500' height='500' alt={''}></Image>
-                    } */}
+                        <Inky puzzle={puzzle} puzzleState={puzzleState} handleChange={handlePuzzleStateChange} />
                     </div>
                 </div>
-
-                
 
             </section>
             <section className='flex flex-col items-center justify-center flex-grow gap-8 pt-12 lg:pt-0'>

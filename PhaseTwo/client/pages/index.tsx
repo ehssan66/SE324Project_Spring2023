@@ -1,5 +1,4 @@
 import { Open_Sans } from 'next/font/google'
-import Game from '@/components/Game'
 import Layout from '../components/layouts'
 
 const OpenSans = Open_Sans({ subsets: ['latin'], display: 'swap' })

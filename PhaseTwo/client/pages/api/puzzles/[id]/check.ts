@@ -9,7 +9,7 @@ export default async function handler(
     res: NextApiResponse<Data>
 ) {
     const { id } = req.query;
-    const { solution } = req.body;
+    const { content } = req.body;
     const response = await fetch(`http://localhost:8080/api/puzzles/${id}/check`, {
         method: 'POST',
         headers: {
