@@ -7,9 +7,9 @@ const OpenSans = Open_Sans({ subsets: ['latin'], display: 'swap' })
 export default function Index() {
   return (
     <Layout>
-      <main className="flex flex-col items-center w-full h-full flex-grow max-w-6xl mx-auto overflow-hidden">
-        <Game />
-      </main>
+{/*       <main className="flex flex-col items-center w-full h-full flex-grow max-w-6xl mx-auto overflow-hidden"> */}
+{/*         <Game /> */}
+{/*       </main> */}
     </Layout>
   )
 }

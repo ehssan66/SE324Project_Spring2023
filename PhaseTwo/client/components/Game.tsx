@@ -13,20 +13,21 @@ export default function Game() {
     const [solution, setSolution] = useState({} as Puzzle);
 
     const fetchPuzzle = async () => {
-        const res = await fetch('/api/puzzles/suguru/random')
-        const data = await res.json();
-        setPuzzle(data);
-        const card = document.querySelector('.flip-card')
-        if(card?.classList.contains('[transform:rotateY(180deg)]')) {
-            card?.classList.remove('[transform:rotateY(180deg)]')
-        }
-        solvePuzzle(data.id);
+//         const res = await fetch('/api/puzzles/suguru/random')
+//         const data = await res.json();
+//         setPuzzle(data);
+//         const card = document.querySelector('.flip-card')
+//         if(card?.classList.contains('[transform:rotateY(180deg)]')) {
+//             card?.classList.remove('[transform:rotateY(180deg)]')
+//         }
+//         solvePuzzle(data.id);
+setPuzzle({id: 1, content: '0 1 0\n2 0 0\n0 0 2'});
     }
 
     const solvePuzzle = async (id: number) => {
-        const res = await fetch(`/api/puzzles/suguru/${id}/solve`)
-        const data = await res.json();
-        setSolution(data)
+//         const res = await fetch(`/api/puzzles/suguru/${id}/solve`)
+//         const data = await res.json();
+//         setSolution(data)
     }
 
     const flipCard = () => {
@@ -50,9 +51,7 @@ export default function Game() {
                     }
                 </div>
                 <div className='solution absolute w-full h-full [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]'>
-                    { solution?.link && 
-                        <Image src={`http://localhost:8080/${solution.link}`} width='500' height='500' alt={''}></Image>
-                    }
+                    {}
                 </div>
             </div>
             
