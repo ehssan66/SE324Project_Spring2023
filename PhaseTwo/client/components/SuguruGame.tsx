@@ -232,10 +232,10 @@ export default function Game() {
 
             </section>
             <section className='flex flex-col items-center justify-center flex-grow gap-8 pt-12 lg:pt-0'>
-                <button onClick={fetchPuzzle} className="btn new-puzzle w-full lg:w-3/4 gap-2 text-primary-content">
+                {/* <button onClick={fetchPuzzle} className="btn new-puzzle w-full lg:w-3/4 gap-2 text-primary-content">
                     <Add size="24" />
                     New Puzzle
-                </button>
+                </button> */}
                 <button onClick={handleCheck} className="btn new-puzzle w-full lg:w-3/4 gap-2 text-primary-content">
                     <Math size="24" />
                     Check Solution
