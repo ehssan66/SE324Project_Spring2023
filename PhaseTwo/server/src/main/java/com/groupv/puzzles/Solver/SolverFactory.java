@@ -8,7 +8,7 @@ public class SolverFactory {
         System.out.println("SolverFactory: " + puzzle.getType().getName());
         return switch (puzzle.getType().getName()) {
             case "suguru" -> new SuguruSolver(puzzle);
-            case "inkeis" -> new InkeisSolver(puzzle);
+            case "inkies" -> new InkeisSolver(puzzle);
         
             default -> null;
         };

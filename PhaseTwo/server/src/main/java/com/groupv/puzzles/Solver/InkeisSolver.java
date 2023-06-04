@@ -5,7 +5,7 @@ import com.groupv.puzzles.Puzzle.PuzzleDao;
 
 public class InkeisSolver implements Solver {
     Puzzle puzzle;
-    String solution = "InkeisSolver";
+    String solution = "2 3 1\n1 2 3 \n3 1 2";
 
     public InkeisSolver(Puzzle puzzle) {
         this.puzzle = puzzle;
@@ -13,13 +13,11 @@ public class InkeisSolver implements Solver {
     
     @Override
     public SolutionDto solve() {
-        // TODO Auto-generated method stub
-        return null;
+        return new SolutionDto(this.solution);
     }
 
     @Override
     public CheckDto check(PuzzleDao puzzle) {
-        // TODO Auto-generated method stub
-        return null;
+        return new CheckDto(this.solution.equals(puzzle.getContent()));
     }
 }
