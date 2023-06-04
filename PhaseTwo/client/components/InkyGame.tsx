@@ -81,13 +81,13 @@ export default function Game() {
         console.log(solution)
 
         // send solution to server
-        const res = await fetch('/api/puzzles/1/check', {
+        const res = await fetch('/api/puzzles/2/check', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                solution,
+                content: solution,
             })
         })
         const data = await res.json()
