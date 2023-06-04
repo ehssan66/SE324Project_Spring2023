@@ -34,10 +34,10 @@ export default function Header() {
                     </div>
 
                     <div className="mx-auto">
-                        <Link href="/suguru" className="font-thin btn btn-link normal-case text-white no-underline text-lg">
+                        <Link href="/suguru" className="font-thin btn btn-ghost normal-case text-2xl ml-2">
                             Suguru
                         </Link>
-                        <Link href="/inky" className="font-thin btn btn-link text-white no-underline normal-case text-lg">
+                        <Link href="/inky" className="font-thin btn btn-ghost normal-case text-2xl ml-2">
                             Inkiy
                         </Link>
                     </div>
