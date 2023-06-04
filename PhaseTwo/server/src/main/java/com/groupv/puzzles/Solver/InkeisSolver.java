@@ -18,8 +18,8 @@ public class InkeisSolver implements Solver {
     }
 
     @Override
-    public Boolean check(PuzzleDao puzzle) {
+    public CheckDto check(PuzzleDao puzzle) {
         // TODO Auto-generated method stub
-        return true;
+        return null;
     }
 }

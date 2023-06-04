@@ -18,8 +18,7 @@ public class SuguruSolver implements Solver {
     }
 
     @Override
-    public Boolean check(PuzzleDao puzzle) {
-        System.out.println("SuguruSolver: " + this.solution + " vs " + puzzle.getContent());
-        return this.solution.equals(puzzle.getContent());
+    public CheckDto check(PuzzleDao puzzle) {
+        return new CheckDto(this.solution.equals(puzzle.getContent()));
     }
 }

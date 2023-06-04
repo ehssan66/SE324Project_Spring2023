@@ -5,5 +5,5 @@ import com.groupv.puzzles.Puzzle.PuzzleDao;
 public interface Solver {
     public SolutionDto solve();
 
-    public Boolean check(PuzzleDao puzzle);
+    public CheckDto check(PuzzleDao puzzle);
 }

@@ -13,6 +13,7 @@ import com.groupv.puzzles.Solver.SolutionDto;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import org.springframework.http.MediaType;
+import com.groupv.puzzles.Solver.CheckDto;
 
 
 /**
@@ -65,8 +66,8 @@ public class PuzzleController {
         return puzzle.solver().solve();
     }
 
-    @PostMapping("/api/puzzles/{id}/check")
-    public Boolean checkPuzzle(@PathVariable("id") Long id, @RequestBody PuzzleDao puzzleDao) {
+    @PostMapping(value= "/api/puzzles/{id}/check", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public CheckDto checkPuzzle(@PathVariable("id") Long id, @RequestBody PuzzleDao puzzleDao) {
         Puzzle puzzle = puzzleRepository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No puzzle found"));
 
