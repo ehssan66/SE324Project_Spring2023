@@ -23,7 +23,6 @@ public class DatabaseSeeder {
      * 
      * @param puzzleTypeRepository - Repository for PuzzleType entity
      * @param puzzleRepository - Repository for Puzzle entity
-     * @param solutionRepository - Repository for Solution entity
      * @return A CommandLineRunner instance to run the seed process
      * @throws Exception If there is an issue during the seeding process
      */

@@ -19,7 +19,7 @@ public class ParsedPuzzle<T> {
     /**
      * Returns the size of the Puzzle.
      * 
-     * @return the size of the Puzzle
+     * @return int puzzle size
      */
     public int getSize() {
         return size;
@@ -28,7 +28,7 @@ public class ParsedPuzzle<T> {
     /**
      * Sets the size of the Puzzle.
      * 
-     * @param size the size of the Puzzle
+     * @param size of the Puzzle
      */
     public void setSize(int size) {
         this.size = size;
@@ -39,6 +39,7 @@ public class ParsedPuzzle<T> {
      *
      * @param row the row of the cell
      * @param col the column of the cell
+     * @param value the value to set
      */
     public void setCell(int row, int col, T value) {
         grid[row][col] = value;
@@ -47,12 +48,17 @@ public class ParsedPuzzle<T> {
     /**
      * Returns the value of the grid.
      *
-     * @return the value of the grid
+     * @return generic grid value
      */
     public T[][] getGrid() {
         return grid;
     }
 
+    /**
+     * Returns the puzzle as string
+     *
+     * @return puzzle as string
+     */
     public String toString() {
         String grid = "";
         for (int i = 0; i < size; i++) {

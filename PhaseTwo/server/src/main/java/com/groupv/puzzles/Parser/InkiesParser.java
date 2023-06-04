@@ -13,8 +13,8 @@ public class InkiesParser implements PuzzleParser {
     /**
      * Parses the given file into a Puzzle object.
      *
-     * @param path the path to the file to parse
-     * @return the Puzzle object
+     * @param fileName containing puzzle to parse
+     * @return Puzzle object
      * @throws IOException if the file cannot be read
      * @throws URISyntaxException if the file path is invalid
      */

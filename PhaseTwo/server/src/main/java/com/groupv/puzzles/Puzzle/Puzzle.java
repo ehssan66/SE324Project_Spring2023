@@ -43,10 +43,10 @@ public class Puzzle {
     private Date created_at;
 
     /**
-     * Constructs a new Puzzle with the given PuzzleType and link.
+     * Constructs a new Puzzle with the given PuzzleType and content.
      *
      * @param type the PuzzleType of the Puzzle
-     * @param link the link to the Puzzle
+     * @param content of the Puzzle
      */
     public Puzzle(PuzzleType type, String content) {
         this.type = type;
@@ -56,7 +56,7 @@ public class Puzzle {
     /**
      * Returns a Solver for this Puzzle.
      *
-     * @return a Solver for this Puzzle
+     * @return Solver for the Puzzle
      */
     public Solver solver() {
         return SolverFactory.create(this);

@@ -9,16 +9,17 @@ import com.groupv.puzzles.Puzzle.Puzzle;
 import com.groupv.puzzles.PuzzleType.PuzzleType;
 import com.groupv.puzzles.PuzzleType.PuzzleTypeRepository;
 
-/**
- * Configures the repository REST configuration by setting default media type, base path, and entity lookups.
- *
- * @param config the repository REST configuration object to configure
- * @param cors the Cross-Origin Resource Sharing (CORS) registry object to configure
- * @return void
- */
+
 @Configuration
 public class RestConfiguration implements RepositoryRestConfigurer {
 
+    /**
+     * Configures the repository REST configuration by setting default media type, base path, and entity lookups.
+     *
+     * @param config the repository REST configuration object to configure
+     * @param cors the Cross-Origin Resource Sharing (CORS) registry object to configure
+     * @return void
+     */
     @Override
     public void configureRepositoryRestConfiguration(
       RepositoryRestConfiguration config, CorsRegistry cors) {
