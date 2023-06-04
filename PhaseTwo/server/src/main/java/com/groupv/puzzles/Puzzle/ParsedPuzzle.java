@@ -61,6 +61,6 @@ public class ParsedPuzzle<T> {
                 grid += this.grid[i][j] + " ";
             }
         }
-        return "Puzzle: \n" + "size: " + size + "\ngrid: " + grid;
+        return size + grid;
     }
 }
