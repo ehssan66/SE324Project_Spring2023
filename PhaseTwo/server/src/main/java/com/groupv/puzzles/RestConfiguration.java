@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import com.groupv.puzzles.Puzzle.Puzzle;
 import com.groupv.puzzles.PuzzleType.PuzzleType;
 import com.groupv.puzzles.PuzzleType.PuzzleTypeRepository;
-import com.groupv.puzzles.Solution.Solution;
 
 /**
  * Configures the repository REST configuration by setting default media type, base path, and entity lookups.
@@ -33,7 +32,7 @@ public class RestConfiguration implements RepositoryRestConfigurer {
         config.setBasePath("/api");
 
         // Expose the ids of the PuzzleType, Puzzle, and Solution entities
-        config.exposeIdsFor(PuzzleType.class, Puzzle.class, Solution.class);
+        config.exposeIdsFor(PuzzleType.class, Puzzle.class);
 
         // Configure entity lookups for the PuzzleTypeRepository using the name field
         // and the findByName method

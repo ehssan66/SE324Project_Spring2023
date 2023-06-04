@@ -8,10 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.groupv.puzzles.PuzzleType.PuzzleType;
 import com.groupv.puzzles.PuzzleType.PuzzleTypeRepository;
-import com.groupv.puzzles.Solution.Solution;
-import com.groupv.puzzles.Solution.SolutionRepository;
+import com.groupv.puzzles.Parser.InkiesParser;
+import com.groupv.puzzles.Parser.SuguruParser;
 import com.groupv.puzzles.Puzzle.Puzzle;
 import com.groupv.puzzles.Puzzle.PuzzleRepository;
+
 
 @Configuration
 public class DatabaseSeeder {
@@ -27,17 +28,30 @@ public class DatabaseSeeder {
      * @throws Exception If there is an issue during the seeding process
      */
     @Bean
-    CommandLineRunner seed(PuzzleTypeRepository puzzleTypeRepository, PuzzleRepository puzzleRepository, SolutionRepository solutionRepository) {
+    CommandLineRunner seed(PuzzleTypeRepository puzzleTypeRepository, PuzzleRepository puzzleRepository) {
         // create sample data
         PuzzleType suguru = new PuzzleType("suguru", "Suguru");
-        Puzzle puzzle = new Puzzle(suguru, "/public/suguru/puzzle-1.png");
-        Solution solution = new Solution(List.of(puzzle), "/public/suguru/solution-1.png");
+        PuzzleType inkies = new PuzzleType("inkies", "Inkies");
+        
+        try {
+			// file is in static/public
+			SuguruParser suguruParser = new SuguruParser();
+			InkiesParser Inkiesparser = new InkiesParser();
+            Puzzle puzzle1 = new Puzzle(suguru, suguruParser.parse("suguru.txt").toString());
+            Puzzle puzzle2 = new Puzzle(inkies, Inkiesparser.parse("inkies.txt").toString());
+
+            return args -> {
+                log.info("Preloading " + puzzleTypeRepository.save(suguru));
+                log.info("Preloading " + puzzleTypeRepository.save(inkies));
+                log.info("Preloading " + puzzleRepository.save(puzzle1));
+                log.info("Preloading " + puzzleRepository.save(puzzle2));
+            };
+		} catch (Exception e) {
+            log.info("[error]");
+			e.printStackTrace();
+		}
 
         // preload sample data into the database
-        return args -> {
-            log.info("Preloading " + puzzleTypeRepository.save(suguru));
-            log.info("Preloading " + puzzleRepository.save(puzzle));
-            log.info("Preloading " + solutionRepository.save(solution));
-        };
+        return args -> {};
     }
 }

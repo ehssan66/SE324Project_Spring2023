@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.rest.core.annotation.RestResource;
 import com.groupv.puzzles.PuzzleType.PuzzleType;
-import com.groupv.puzzles.Solution.Solution;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -34,14 +33,11 @@ public class Puzzle {
     private PuzzleType type;
 
     @Column(nullable = false)
-    private String link;
+    private String content;
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private Date created_at;
-
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "puzzles")
-    private List<Solution> solutions;
 
     /**
      * Constructs a new Puzzle with the given PuzzleType and link.
@@ -49,9 +45,9 @@ public class Puzzle {
      * @param type the PuzzleType of the Puzzle
      * @param link the link to the Puzzle
      */
-    public Puzzle(PuzzleType type, String link) {
+    public Puzzle(PuzzleType type, String content) {
         this.type = type;
-        this.link = link;
+        this.content = content;
     }
 
 }

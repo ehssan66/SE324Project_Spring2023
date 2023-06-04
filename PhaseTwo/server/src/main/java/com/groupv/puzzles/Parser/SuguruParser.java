@@ -21,7 +21,7 @@ public class SuguruParser implements PuzzleParser {
     @Override
     public ParsedPuzzle<String> parse(String fileName) throws IOException, URISyntaxException {
 
-        URI uri = new URI(InkyParser.class.getClassLoader().getResource("static/public/" + fileName).toString());
+        URI uri = new URI(SuguruParser.class.getClassLoader().getResource("static/public/" + fileName).toString());
         String path = uri.getPath();
         BufferedReader reader = new BufferedReader(new FileReader(path));
 

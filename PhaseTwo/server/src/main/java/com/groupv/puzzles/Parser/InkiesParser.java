@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 
 import com.groupv.puzzles.Puzzle.ParsedPuzzle;
 
-public class InkyParser implements PuzzleParser {
+public class InkiesParser implements PuzzleParser {
 
     /**
      * Parses the given file into a Puzzle object.
@@ -21,7 +21,7 @@ public class InkyParser implements PuzzleParser {
     @Override
     public ParsedPuzzle<Integer> parse(String fileName) throws IOException, URISyntaxException {
 
-        URI uri = new URI(InkyParser.class.getClassLoader().getResource("static/public/" + fileName).toString());
+        URI uri = new URI(InkiesParser.class.getClassLoader().getResource("static/public/" + fileName).toString());
         String path = uri.getPath();
         BufferedReader reader = new BufferedReader(new FileReader(path));
         String line = reader.readLine();
