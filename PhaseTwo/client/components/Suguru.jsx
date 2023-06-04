@@ -65,9 +65,8 @@ export default function Suguru({ puzzle, puzzleState, setPuzzleState, handleChan
         for (let i = 0; i < rows.length; i++) {
             let row = rows[i].split(' ')
             for (let j = 0; j < row.length; j++) {
-                if (row[j]) {
-
-                    initPuzzleState[getName({ upper: i.toString(), lower: j.toString() })] = row[j]
+                if (row[j].match(/[0-9]/)) {
+                    initPuzzleState[getName({ upper: i.toString(), lower: j.toString() })] = row[j].match(/[0-9]/)[0]
                 }
             }
         }
