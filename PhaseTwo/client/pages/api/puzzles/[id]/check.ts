@@ -17,7 +17,7 @@ export default async function handler(
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            "content": solution,
+            "content": content,
         })
     });
     const data = await response.json();
