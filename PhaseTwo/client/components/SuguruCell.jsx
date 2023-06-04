@@ -3,7 +3,7 @@ import { getName } from './Suguru'
 
 export default function SuguruCell({puzzleState, position, onChange}) {
 
-  let value = puzzleState[getName(position)].match(/[0-9]/) ? puzzleState[getName(position)].match(/[0-9]/)[0] : ''
+  let value = puzzleState[getName(position)]?.match(/[0-9]/) ? puzzleState[getName(position)].match(/[0-9]/)[0] : ''
 
   return (
     <div>
