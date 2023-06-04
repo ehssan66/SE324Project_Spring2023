@@ -94,6 +94,46 @@ export default function Game() {
         fiveFive: ''
     } as PuzzleState)
 
+
+    const [solvedState, setSolvedState] = useState({
+        zeroZero: '',
+        zeroOne: '',
+        zeroTwo: '',
+        zeroThree: '',
+        zeroFour: '',
+        zeroFive: '',
+        oneZero: '',
+        oneOne: '',
+        oneTwo: '',
+        oneThree: '',
+        oneFour: '',
+        oneFive: '',
+        twoZero: '',
+        twoOne: '',
+        twoTwo: '',
+        twoThree: '',
+        twoFour: '',
+        twoFive: '',
+        threeZero: '',
+        threeOne: '',
+        threeTwo: '',
+        threeThree: '',
+        threeFour: '',
+        threeFive: '',
+        fourZero: '',
+        fourOne: '',
+        fourTwo: '',
+        fourThree: '',
+        fourFour: '',
+        fourFive: '',
+        fiveZero: '',
+        fiveOne: '',
+        fiveTwo: '',
+        fiveThree: '',
+        fiveFour: '',
+        fiveFive: ''
+    } as PuzzleState)
+
     function handlePuzzleStateChange(e: { target: { name: any; value: any } }) {
         setPuzzleState({
             ...puzzleState,
@@ -179,18 +219,14 @@ export default function Game() {
                         : <></>
                     }
             <section className='flex-grow'></section>
-            <section className='[perspective:1000px] w-[500px] max-w-[100vw] px-6 lg:px-0 max-h-[calc(100vw-3rem)] h-[500px]'>
+            <section className='[perspective:1000px] w-[410px] max-w-[410px] px-6 lg:px-0 max-h-[410px] h-[410px]'>
                 <div className='flip-card [transform-style:preserve-3d] transition-transform duration-[0.8s] relative w-full h-full'>
                     <div className='puzzle absolute w-full h-full [-webkit-backface-visibility:hidden] [backface-visibility:hidden] flex items-center justify-center'>
-                        {/* { puzzle?.link && 
-                        <Image src={`http://localhost:8080/${puzzle.link}`} width='500' height='500' alt={''}></Image>
-                    } */}
+                        
                         <Suguru puzzle={'3a b b b c c\na 1d e 2b 3c 1f\na e e e c g\na h e i c g\na h i i i g\nh h h i 3g g'} puzzleState={puzzleState} setPuzzleState={setPuzzleState} handleChange={handlePuzzleStateChange}/>
                     </div>
                     <div className='solution absolute w-full h-full [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]'>
-                        {/* { solution?.link && 
-                        <Image src={`http://localhost:8080/${solution.link}`} width='500' height='500' alt={''}></Image>
-                    } */}
+                    <Suguru puzzle={'3a 4b 3b 1b 4c 2c\n5a 1d 5e 2b 3c 1f\n4a 2e 3e 4e 5c 4g\n1a 5h 1e 2i 1c 2g\n2a 4h 3i 5i 4i 5g\n3h 1h 2h 1i 3g 1g'} puzzleState={solvedState} setPuzzleState={setSolvedState} handleChange={() => {}}/>
                     </div>
                 </div>
 
