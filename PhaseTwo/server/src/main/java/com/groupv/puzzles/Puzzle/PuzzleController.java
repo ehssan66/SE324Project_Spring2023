@@ -58,6 +58,13 @@ public class PuzzleController {
         return new RedirectView("/api/puzzles/" + puzzle.getId());
     }
 
+    /**
+     * Gets a Puzzle by its ID.
+     *
+     * @param id the ID of the Puzzle to get
+     * @return the Puzzle with the given ID
+     * @throws ResponseStatusException if no Puzzle is found
+     */
     @GetMapping("/api/puzzles/{id}/solve")
     public SolutionDto solvePuzzle(@PathVariable("id") Long id) {
         Puzzle puzzle = puzzleRepository.findById(id)
@@ -66,6 +73,14 @@ public class PuzzleController {
         return puzzle.solver().solve();
     }
 
+    /**
+     * Checks a Puzzle's solution.
+     *
+     * @param id        the ID of the Puzzle to check
+     * @param puzzleDao the PuzzleDao containing the solution to check
+     * @return a CheckDto containing the results of the check
+     * @throws ResponseStatusException if no Puzzle is found
+     */
     @PostMapping(value= "/api/puzzles/{id}/check", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public CheckDto checkPuzzle(@PathVariable("id") Long id, @RequestBody PuzzleDao puzzleDao) {
         Puzzle puzzle = puzzleRepository.findById(id)
