@@ -4,12 +4,12 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Inky from './Inky'
 
-type Puzzle = {
+interface Puzzle {
     id: number,
     content: string
 }
 
-type PuzzleState = {
+interface PuzzleState {
     topLeft: string,
     top: string,
     topRight: string,
@@ -21,7 +21,7 @@ type PuzzleState = {
     bottomRight: string
 }
 
-export default function Game() {
+export default function InkyGame() {
     const [puzzle, setPuzzle] = useState({} as Puzzle);
     const [solution, setSolution] = useState({} as Puzzle);
 

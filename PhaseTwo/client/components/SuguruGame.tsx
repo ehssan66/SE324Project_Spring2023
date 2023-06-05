@@ -4,12 +4,12 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Suguru from './Suguru'
 
-type Puzzle = {
+interface Puzzle {
     id: number,
     content: string
 }
 
-type PuzzleState = {
+interface PuzzleState {
     zeroZero: string,
     zeroOne: string,
     zeroTwo: string,
@@ -48,7 +48,7 @@ type PuzzleState = {
     fiveFive: string
 }
 
-export default function Game() {
+export default function SuguruGame() {
     const [puzzle, setPuzzle] = useState({} as Puzzle);
     const [solution, setSolution] = useState({} as Puzzle);
 

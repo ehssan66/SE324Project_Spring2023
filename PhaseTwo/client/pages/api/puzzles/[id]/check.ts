@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = {
-    name: string
+interface Data {
+    success: boolean
 }
 
 export default async function handler(
@@ -20,7 +20,7 @@ export default async function handler(
             "content": content,
         })
     });
-    const data = await response.json();
+    const data: Data = await response.json();
     res.status(200).json(data);
 
 }

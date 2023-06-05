@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = {
-  name: string
+interface Data {
+  content: string
 }
 
 export default async function handler(
@@ -10,7 +10,7 @@ export default async function handler(
 ) {
   const { type, id } = req.query;
   const response = await fetch(`http://localhost:8080/api/puzzles/${id}/solve`)
-  const data = await response.json();
+  const data: Data = await response.json();
   res.status(200).json(data);
 
 }
