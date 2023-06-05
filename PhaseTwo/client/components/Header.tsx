@@ -38,7 +38,7 @@ export default function Header() {
                             Suguru
                         </Link>
                         <Link href="/inky" className="font-thin btn btn-ghost normal-case text-2xl ml-2">
-                            Inkiy
+                            Inky
                         </Link>
                     </div>
                     <div className="">

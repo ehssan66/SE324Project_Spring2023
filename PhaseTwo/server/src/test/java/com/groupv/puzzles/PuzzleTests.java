@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.hamcrest.CoreMatchers.is;
@@ -34,7 +35,7 @@ class PuzzleTests {
 
 	// make sure the context loads
 	// Partitions: puzzleRepository is null, puzzleRepository is not null
-	// Partitions: puzzleRepository is null
+	// Subdomain: puzzleRepository is not null
 	@Test
 	void contextLoads() throws Exception {
         assertThat(puzzleRepository).isNotNull();
@@ -51,7 +52,7 @@ class PuzzleTests {
 		.contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 		.andExpect(jsonPath("$.content").isArray())
 		.andExpect(jsonPath("$.content[0].id", is(1)))
-		.andExpect(jsonPath("$.content[0].link", is("/public/suguru/puzzle-1.png")));
+		.andExpect(jsonPath("$.content[0].content", is(empty())));
 	}
 
 	// Partitions: puzzle exists, puzzle does not exist
@@ -64,7 +65,7 @@ class PuzzleTests {
 		.andExpect(content()
 		.contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 		.andExpect(jsonPath("$.id", is(1)))
-		.andExpect(jsonPath("$.link", is("/public/suguru/puzzle-1.png")));
+		.andExpect(jsonPath("$.content", is(empty())));
 	}
 
 	// Partitions: puzzle have valid type, puzzle does not have valid type
@@ -113,7 +114,7 @@ class PuzzleTests {
         .andExpect(content()
 		.contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 		.andExpect(jsonPath("$.id", is(1)))
-		.andExpect(jsonPath("$.link", is("/public/suguru/puzzle-1.png")));
+		.andExpect(jsonPath("$.content", is(empty())));
 	}
 
 	// Partitions: puzzle image exists, puzzle image does not exist

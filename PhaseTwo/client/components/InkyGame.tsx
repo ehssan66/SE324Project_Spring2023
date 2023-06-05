@@ -1,6 +1,5 @@
 "use client"
-import { Add, Magicpen, Math, Warning2, TickCircle } from 'iconsax-react'
-import Image from 'next/image'
+import { Magicpen, Math, Warning2, TickCircle } from 'iconsax-react'
 import { useEffect, useState } from 'react'
 import Inky from './Inky'
 
@@ -49,16 +48,6 @@ export default function InkyGame() {
     }
 
     const fetchPuzzle = async () => {
-        // const res = await fetch('/api/puzzles/suguru/random')
-        // const data = await res.json();
-        // console.log(data);
-        // setPuzzle(data);
-        // const card = document.querySelector('.flip-card')
-        // if(card?.classList.contains('[transform:rotateY(180deg)]')) {
-        //     card?.classList.remove('[transform:rotateY(180deg)]')
-        // }
-        // solvePuzzle(data.id);
-
         setPuzzle({ id: 1, content: 'e e e\ne e e\ne e e' })
     }
 
@@ -66,7 +55,7 @@ export default function InkyGame() {
         const res = await fetch(`/api/puzzles/${id}/solve`)
         const data = await res.json();
         console.log(data["content"])
-        setSolution({id: 1, content: data["content"]})
+        setSolution({ id: 1, content: data["content"] })
     }
 
     const flipCard = () => {
@@ -74,9 +63,10 @@ export default function InkyGame() {
         card?.classList.toggle('[transform:rotateY(180deg)]')
     }
 
-    /*
-    *   endpoint needs to be checked later
-    */
+
+    /**
+     * Checks if the solution is correct by sending it to the server
+     */
     const handleCheck = async () => {
         const solution = `${puzzleState.topLeft} ${puzzleState.top} ${puzzleState.topRight}\n${puzzleState.left} ${puzzleState.center} ${puzzleState.right}\n${puzzleState.bottomLeft} ${puzzleState.bottom} ${puzzleState.bottomRight}`
 
@@ -95,10 +85,12 @@ export default function InkyGame() {
         console.log(data)
         setIsTrue(data.success);
         setChecked(true);
-      setTimeout(() => {
+
+        setTimeout(() => {
             setIsTrue(false);
             setChecked(false);
         }, 4000);
+
     }
 
     useEffect(() => {
@@ -109,47 +101,44 @@ export default function InkyGame() {
 
     return (
         <div className='game flex flex-col lg:flex-row items-center justify-center h-full w-full m-auto'>
-        {   isTrue ?
-                            <div className='bg-success transition duration-700 bg-opacity-50 flex flex-col items-center justify-center absolute top-24 right-8'>
-                                <h1 className='text-xl text-white px-14 py-2 flex items-center gap-2'>
-                                    <TickCircle size='24' />
-                                    Correct!
-                                </h1>
-                            </div>
-                        : checked ?
-                                <div className='bg-error transition duration-700 bg-opacity-50 flex flex-col items-center justify-center absolute top-24 right-8'>
-                                    <h1 className='text-xl text-white px-14 py-2 flex items-center gap-2'>
-                                        <Warning2 size='24' />
-                                        Incorrect!
-                                    </h1>
-                                </div>
-                        : <></>
-                    }
+            {isTrue ?
+                <div className='bg-success transition duration-700 bg-opacity-50 flex flex-col items-center justify-center absolute top-24 right-8'>
+                    <h1 className='text-xl text-white px-14 py-2 flex items-center gap-2'>
+                        <TickCircle size='24' />
+                        Correct!
+                    </h1>
+                </div>
+                : checked ?
+                    <div className='bg-error transition duration-700 bg-opacity-50 flex flex-col items-center justify-center absolute top-24 right-8'>
+                        <h1 className='text-xl text-white px-14 py-2 flex items-center gap-2'>
+                            <Warning2 size='24' />
+                            Incorrect!
+                        </h1>
+                    </div>
+                    : <></>
+            }
             <section className='flex-grow'></section>
             <section className='[perspective:1000px] w-[206px] max-w-[206px] px-6 lg:px-0 max-h-[calc(206px)] h-[206px]'>
                 <div className='flip-card [transform-style:preserve-3d] transition-transform duration-[0.8s] relative w-full h-full'>
                     <div className='puzzle absolute w-full h-full [-webkit-backface-visibility:hidden] [backface-visibility:hidden] flex items-center justify-center'>
-                        {/* { puzzle?.link && 
-                        <Image src={`http://localhost:8080/${puzzle.link}`} width='500' height='500' alt={''}></Image>
-                    } */}
                         <Inky puzzle={puzzle} puzzleState={puzzleState} handleChange={handlePuzzleStateChange} />
                     </div>
                     <div className='solution absolute w-full h-full [transform:rotateY(180deg)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden]'>
-                    <div>
+                        <div>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td className={`border border-neutral relative border-t-2 border-t-primary-content border-l-2 border-l-primary-content border-r-2 border-r-primary-content`} >
                                             <div>
                                                 <input type="text" value="2" maxLength={1}
-                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                                    className='text-center bg-base-100 p-6 w-16 h-16' />
                                             </div>
                                             <div className="absolute top-0 left-2 text-sm">7 +</div>
                                         </td>
                                         <td className={`border border-neutral relative border-t-2 border-t-primary-content border-l-2 border-l-primary-content border-b-2 border-b-primary-content`} >
                                             <div>
                                                 <input type="text" value="3" maxLength={1}
-                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                                    className='text-center bg-base-100 p-6 w-16 h-16' />
                                             </div>
                                             <div className="absolute top-0 left-2 text-sm">3 x</div>
 
@@ -157,7 +146,7 @@ export default function InkyGame() {
                                         <td className={`border border-neutral relative border-t-2 border-t-primary-content border-r-2 border-r-primary-content border-b-2 border-b-primary-content`} >
                                             <div>
                                                 <input type="text" value="1" maxLength={1}
-                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                                    className='text-center bg-base-100 p-6 w-16 h-16' />
                                             </div>
                                         </td>
                                     </tr>
@@ -165,20 +154,20 @@ export default function InkyGame() {
                                         <td className={`border border-neutral relative border-l-2 border-l-primary-content border-r-2 border-r-primary-content`} >
                                             <div>
                                                 <input type="text" value="1" maxLength={1}
-                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                                    className='text-center bg-base-100 p-6 w-16 h-16' />
                                             </div>
                                         </td>
                                         <td className={`border border-neutral relative border-l-2 border-l-primary-content`} >
                                             <div>
                                                 <input type="text" value="2" maxLength={1}
-                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                                    className='text-center bg-base-100 p-6 w-16 h-16' />
                                             </div>
                                             <div className="absolute top-0 left-2 text-sm">12 x</div>
                                         </td>
                                         <td className={`border border-neutral relative border-r-2 border-r-primary-content`} >
                                             <div>
                                                 <input type="text" value="3" maxLength={1}
-                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                                    className='text-center bg-base-100 p-6 w-16 h-16' />
                                             </div>
                                         </td>
                                     </tr>
@@ -186,23 +175,23 @@ export default function InkyGame() {
                                         <td className={`border border-neutral relative border-l-2 border-l-primary-content border-b-2 border-b-primary-content`} >
                                             <div>
                                                 <input type="text" value="3" maxLength={1}
-                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                                    className='text-center bg-base-100 p-6 w-16 h-16' />
                                             </div>
                                         </td>
                                         <td className={`border border-neutral relative border-b-2 border-b-primary-content border-t-2 border-t-primary-content border-r-2 border-r-primary-content`} >
                                             <div>
                                                 <input type="text" value="1" maxLength={1}
-                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                                    className='text-center bg-base-100 p-6 w-16 h-16' />
                                             </div>
                                         </td>
                                         <td className={`border border-neutral relative border-b-2 border-b-primary-content border-r-2 border-r-primary-content`} >
                                             <div>
                                                 <input type="text" value="2" maxLength={1}
-                                                    className='text-center bg-base-100 p-6 w-16 h-16'/>
+                                                    className='text-center bg-base-100 p-6 w-16 h-16' />
                                             </div>
                                         </td>
                                     </tr>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -211,10 +200,6 @@ export default function InkyGame() {
 
             </section>
             <section className='flex flex-col items-center justify-center flex-grow gap-8 pt-12 lg:pt-0'>
-                {/* <button onClick={fetchPuzzle} className="btn new-puzzle w-full lg:w-3/4 gap-2 text-primary-content">
-                    <Add size="24" />
-                    New Puzzle
-                </button> */}
                 <button onClick={handleCheck} className="btn new-puzzle w-full lg:w-3/4 gap-2 text-primary-content">
                     <Math size="24" />
                     Check Solution
