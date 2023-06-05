@@ -16,27 +16,6 @@ export function getName(position) {
 
 export default function Inky({ puzzle, puzzleState, handleChange }) {
 
-
-    // const [puzzleState, setPuzzleState] = useState({
-    //     topLeft: '',
-    //     top: '',
-    //     topRight: '',
-    //     left: '',
-    //     center: '',
-    //     right: '',
-    //     bottomLeft: '',
-    //     bottom: '',
-    //     bottomRight: ''
-    // })
-
-    // function handleChange(e) {
-    //     setPuzzleState({
-    //         ...puzzleState,
-    //         [e.target.name]: e.target.value
-    //     })
-    //     console.log(puzzleState)
-    // }
-
     return (
         <div>
             <table>
